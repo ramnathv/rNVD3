@@ -4,16 +4,24 @@ This R package provides a familiar plotting interface for R users to create inte
 
 ### Installation
 
-`rNVD3` is still under development, and can be installed from github.
+You can install `rNVD3` from `github` using the `devtools` package
 
-
-```
-devtools::install_github('rNVD3', 'ramnathv')
+```{r eval = F}
+require(devtools)
+install_github('rNVD3', 'ramnathv')
 ```
 
 ### Usage
 
-`rNVD3` uses a formula interface to specify plots, just like the `lattice` package. 
+`rNVD3` uses a formula interface to specify plots, just like the `lattice` package. Here is an example that you can try in your R console
+
+```{r eval = F}
+hair_eye = subset(as.data.frame(HairEyeColor), Sex == "Female")
+p1 <- nvd3Plot(Freq ~ Hair | Eye, data = hair_eye, type = 'multiBarChart')
+p1$chart(color = c('brown', 'blue', '#594c26', 'green'))
+p1
+p1$save('haireye.html')
+```
 
 
 ### Credits
