@@ -23,7 +23,7 @@ p1
 p1$save('haireye.html')
 ```
 
-`rNVD3` is also compatible with [Slidify](http://slidify.org). Here is a [slide deck](http://ramnathv.github.io/slidifyExamples/examples/rNVD3) with examples.
+`rNVD3` is also compatible with [Slidify](http://slidify.org). Here is a [slide deck](http://ramnathv.github.io/slidifyExamples/examples/rNVD3) with examples. **Note that `rNVD3` plots work best in Google Chrome.**
 
 More documentation is underway.
 
