@@ -1,4 +1,4 @@
-nvd3Plot <- function(x, data, width = 800, height = 400, ...){
+nvd3Plot <- function(x, data, width = 900, height = 400, ...){
   myChart <- NVD3$new()
   myChart$getChartParams(x, data, ...)
   myChart$addParams(width = width, height = height)
