@@ -1,0 +1,10 @@
+Package: rNVD3
+Type: Package
+Title: Create interactive plots from R using NVD3.js
+Version: 0.0.1
+Date: 2013-04-08
+Author: Ramnath Vaidyanathan
+Maintainer: Ramnath Vaidyanathan <ramnath.vaidya@gmail.com>
+Description: This package provides a familiar R interface to create interactive plots using
+  NVD3.js
+License: MIT
