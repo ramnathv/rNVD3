@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>rNVD3</title>
+    <link rel="stylesheet" href="libraries/frameworks/minimal/stylesheets/styles.css">
+    <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/solarized_light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->    <link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
+
+    <script src="libraries/widgets/nvd3/js/d3.v2.min.js"></script>
+<script src="libraries/widgets/nvd3/js/nv.d3.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>rNVD3</h1>
+        <p>Interactive Charts from R using NVD3.js</p>
+        <p class="view">
+    <a href="http://github.com/ramnathv/rNVD3">
+     View the Project on GitHub <small>ramnathv/rNVD3</small>
+    </a>
+  </p>
+  <ul>
+    <li><a href="https://github.com/ramnathv/rNVD3/zipball/master">
+      Download <strong>ZIP File</strong>
+    </a></li>
+    <li><a href="https://github.com/ramnathv/rNVD3/tarball/master">
+      Download <strong>TAR Ball</strong>
+    </a></li>
+    <li><a href="http://github.com/ramnathv/rNVD3">
+      Fork On <strong>GitHub</strong></a>
+    </li>
+  </ul>
+</header>      <section>
+        <h2>Interactive Charts from R using <a href="https://github.com/novus/nvd3">NVD3</a></h2>
+<style>
+.nvd3Plot {
+  height: 400px;
+}
+body {
+  background-image: url(libraries/frameworks/minimal/images/light_wool.png)
+}
+</style>
+
+<p>This R package helps users create interactive visualizations with <a href="https://github.com/novus/nvd3">NVD3</a>, using a plotting interface similar to the <a href="http://cran.r-project.org/web/packages/lattice/index.html">lattice</a> package.</p>
+
+<h3>Installation</h3>
+
+<p>You can install <code>rNVD3</code> from <code>github</code> using the <code>devtools</code> package</p>
+
+<pre><code>require(devtools)
+install_github(&#39;rNVD3&#39;, &#39;ramnathv&#39;)
+</code></pre>
+
+<h3>Usage</h3>
+
+<p><code>rNVD3</code> uses a plotting interface similar to that of the <code>lattice</code> package. Here are a few examples you can try out in your R console.</p>
+
+<h3>Example 1: Discrete Bar Plot</h3>
+
+<pre><code class="r">require(rNVD3)
+bar1 &lt;- nvd3Plot(~gear, data = mtcars, type = &quot;discreteBarChart&quot;, width = 600)
+bar1$printChart(&quot;chart1&quot;)
+</code></pre>
+
+<div id='chart1' class='nvd3Plot'></div>
+
+<script type='text/javascript'>
+    $(document).ready(function(){
+      drawchart1()
+    });
+    function drawchart1(){  
+      var opts = {"id":"chart1","yAxis":[],"x":"gear","y":"freq","type":"discreteBarChart","width":600,"height":400},
+        data = [{"gear":3,"freq":15},{"gear":4,"freq":12},{"gear":5,"freq":5}]
+  
+      var data = d3.nest()
+        .key(function(d){
+          return opts.group === undefined ? 'main' : d[opts.group]
+        })
+        .entries(data)
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .x(function(d) { return d[opts.x] })
+          .y(function(d) { return d[opts.y] })
+          .width(opts.width)
+          .height(opts.height)
+         
+        
+          
+        
+        
+        
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+
+<h3>Example 2: Stacked bar Plot</h3>
+
+<pre><code class="r">hair_eye = subset(as.data.frame(HairEyeColor), Sex == &quot;Female&quot;)
+p1 &lt;- nvd3Plot(Freq ~ Hair | Eye, data = hair_eye, type = &#39;multiBarChart&#39;, width = 600)
+p1$chart(color = c(&#39;brown&#39;, &#39;blue&#39;, &#39;#594c26&#39;, &#39;green&#39;))
+p1$printChart(&#39;chart2&#39;)
+</code></pre>
+
+<div id='chart2' class='nvd3Plot'></div>
+
+<script type='text/javascript'>
+    $(document).ready(function(){
+      drawchart2()
+    });
+    function drawchart2(){  
+      var opts = {"id":"chart2","yAxis":[],"x":"Hair","y":"Freq","group":"Eye","type":"multiBarChart","width":600,"height":400},
+        data = [{"Hair":"Black","Eye":"Brown","Sex":"Female","Freq":36},{"Hair":"Brown","Eye":"Brown","Sex":"Female","Freq":66},{"Hair":"Red","Eye":"Brown","Sex":"Female","Freq":16},{"Hair":"Blond","Eye":"Brown","Sex":"Female","Freq":4},{"Hair":"Black","Eye":"Blue","Sex":"Female","Freq":9},{"Hair":"Brown","Eye":"Blue","Sex":"Female","Freq":34},{"Hair":"Red","Eye":"Blue","Sex":"Female","Freq":7},{"Hair":"Blond","Eye":"Blue","Sex":"Female","Freq":64},{"Hair":"Black","Eye":"Hazel","Sex":"Female","Freq":5},{"Hair":"Brown","Eye":"Hazel","Sex":"Female","Freq":29},{"Hair":"Red","Eye":"Hazel","Sex":"Female","Freq":7},{"Hair":"Blond","Eye":"Hazel","Sex":"Female","Freq":5},{"Hair":"Black","Eye":"Green","Sex":"Female","Freq":2},{"Hair":"Brown","Eye":"Green","Sex":"Female","Freq":14},{"Hair":"Red","Eye":"Green","Sex":"Female","Freq":7},{"Hair":"Blond","Eye":"Green","Sex":"Female","Freq":8}]
+  
+      var data = d3.nest()
+        .key(function(d){
+          return opts.group === undefined ? 'main' : d[opts.group]
+        })
+        .entries(data)
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .x(function(d) { return d[opts.x] })
+          .y(function(d) { return d[opts.y] })
+          .width(opts.width)
+          .height(opts.height)
+         
+        chart
+  .color( ["brown","blue","#594c26","green"] )
+          
+        
+        
+        
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+
+<p><code>rNVD3</code> is merely a wrapper around nvd3.js. More documentation and examples are underway.</p>
+
+<h3>Using with Shiny</h3>
+
+<p>rCharts is compatible with Shiny. Here is a link to the <a href="http://glimmer.rstudio.com/ramnathv/rNVD3">rCharts Shiny App</a>.</p>
+
+<pre><code class="r">## server.r
+require(rNVD3)
+shinyServer(function(input, output) {
+  output$myChart &lt;- renderChart({
+    hair_eye = as.data.frame(HairEyeColor)
+    p6 &lt;- nvd3Plot(Freq ~ Hair | Eye, data = subset(hair_eye, Sex == input$gender), 
+      type = input$type, id = &#39;myChart&#39;, width = 800)
+    p6$chart(color = c(&#39;brown&#39;, &#39;blue&#39;, &#39;#594c26&#39;, &#39;green&#39;), stacked = input$stack)
+    return(p6)
+  })
+})
+
+## ui.R
+require(rNVD3)
+shinyUI(pageWithSidebar(
+  headerPanel(&quot;rNVD3: Interactive Charts from R using NVD3.js&quot;),
+
+  sidebarPanel(
+    selectInput(inputId = &quot;gender&quot;,
+      label = &quot;Choose Gender&quot;,
+      choices = c(&quot;Male&quot;, &quot;Female&quot;),
+      selected = &quot;Male&quot;),
+    selectInput(inputId = &quot;type&quot;,
+      label = &quot;Choose Chart Type&quot;,
+      choices = c(&quot;multiBarChart&quot;, &quot;multiBarHorizontalChart&quot;),
+      selected = &quot;multiBarChart&quot;),
+    checkboxInput(inputId = &quot;stack&quot;,
+      label = strong(&quot;Stack Bars?&quot;),
+      value = FALSE)
+  ),
+  mainPanel(
+    showOutput(&quot;myChart&quot;)
+  )
+))
+</code></pre>
+
+<h3>Credits</h3>
+
+<p>Most of the implementation in <code>rNVD3</code> is inspired by <a href="https://github.com/metagraf/rHighcharts">rHighcharts</a> and <a href="https://github.com/metagraf/rVega">rVega</a>. I have reused some code from these packages verbatim, and would like to acknowledge the efforts of its author <a href="https://github.com/reinholdsson">Thomas Reinholdsson</a>.</p>
+
+<h3>License</h3>
+
+<p><code>rNVD3</code> is licensed under the MIT License. NVD3 is licensed under Apache License, Version 2.0. You can read  Read more about its license <a href="https://github.com/novus/nvd3/blob/master/LICENSE.md">here</a></p>
+
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="http://github.com/ramnathv">
+          Ramnath Vaidyanathan
+        </a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by 
+          <a href="https://github.com/orderedlist">orderedlist</a></small>
+        </p>
+      </footer>    </div>
+    <script src="libraries/frameworks/minimal/javascripts/scale.fix.js"></script>
+  </body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <script src='libraries/widgets/nvd3/js/d3.v2.js'></script>
+  <script src='libraries/widgets/nvd3/js/nv.d3.min.js'></script>
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
