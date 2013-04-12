@@ -82,5 +82,5 @@ There has been a lot of interest recently in creating packages that allow R user
 - [clickme](https://github.com/nachocab/clickme) by [Nacho Caballero](https://github.com/nachocab)
 - [rHighcharts](https://github.com/metagraf/rHighcharts) by [Thomas Reinholdsson](https://github.com/reinholdsson)
 - [rHighcharts](https://github.com/metagraf/rVega) by [Thomas Reinholdsson](https://github.com/reinholdsson)
-- [rNVD3](https://github.com/ramnathv/rNVD3) by [Ramnath Vaidyanathan](https://github.com/ramnathv)
+- [rCharts](https://github.com/ramnathv/rCharts) by [Ramnath Vaidyanathan](https://github.com/ramnathv)
 
