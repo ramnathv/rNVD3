@@ -1,3 +1,7 @@
+<b>NOTE: Features of rNVD3 have now been incorporated into [rCharts](http://github.com/ramnathv/rCharts). rCharts supports
+several other JS charting libraries including NVD3, with a plotting interface familiar to R users. Development will cease
+on rNVD3.</b>
+
 ## rNVD3
 
 This R package provides a familiar plotting interface for R users to create interactive visualizations using [NVD3.js](http://www.nvd3.org).
