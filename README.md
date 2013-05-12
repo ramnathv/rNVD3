@@ -85,6 +85,6 @@ There has been a lot of interest recently in creating packages that allow R user
 - [gg2v](https://github.com/hadley/gg2v) by [Hadley Wickham](https://github.com/hadley)
 - [clickme](https://github.com/nachocab/clickme) by [Nacho Caballero](https://github.com/nachocab)
 - [rHighcharts](https://github.com/metagraf/rHighcharts) by [Thomas Reinholdsson](https://github.com/reinholdsson)
-- [rHighcharts](https://github.com/metagraf/rVega) by [Thomas Reinholdsson](https://github.com/reinholdsson)
+- [rVega](https://github.com/metagraf/rVega) by [Thomas Reinholdsson](https://github.com/reinholdsson)
 - [rCharts](https://github.com/ramnathv/rCharts) by [Ramnath Vaidyanathan](https://github.com/ramnathv)
 
